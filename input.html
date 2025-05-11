@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>RNA-seq DE Browser</title>
+  <link rel="stylesheet" href="/ylai38/final/css/style.css">
+  <script src="/ylai38/final/js/chart.js" defer></script>
+</head>
+<body>
+  <h1>RNA-seq DE Browser</h1>
+  <form action="/ylai38/final/upload.cgi"
+        method="post"
+        enctype="multipart/form-data">
+    <div class="form-field">
+      <label>DESeq2 CSV: <input type="file" name="csvfile" required></label>
+    </div>
+    <div class="form-field">
+      <label>Min log2FC: <input type="number" name="log2fc" step="0.1" value="1.0"></label>
+    </div>
+    <div class="form-field">
+      <label>Max padj:   <input type="number" name="padj"   step="0.01" value="0.05"></label>
+    </div>
+    <button type="submit">Analyze</button>
+  </form>
+</body>
+</html>

@@ -1,0 +1,10 @@
+* NEIP Project Discussion *
+
+Motivation
+High-throughput RNA-seq experiments often produce extensive differential-expression tables. NEIP offers a lightweight web UI for filtering by fold-change and significance, displaying results in an HTML table, and visualizing top genes in a bar chart—all without requiring users to install R or desktop software.
+
+Challenges
+While constructing NEIP, I faced various technical challenges that enhanced my understanding of web-based bioinformatics tools. First, setting up Apache to run Python CGI scripts and ensuring the SQLite database was writable taught me how crucial correct file permissions and directory structure are—without them, the server would quietly ignore my code and uploads. Second, connecting my Python backend to a client-side Chart.js visualization highlighted the necessity for valid JSON output; I discovered that Python’s default str(list) representation (with single quotes) causes errors in JavaScript, so switching to json.dumps was necessary. Finally, managing the load order of external libraries versus inline chart calls underscored how browsers parse and execute <script> tags—it was essential to load Chart.js and my helper functions before calling renderBarChart to avoid “function not defined” errors.
+
+Future Directions
+There are several ways to enhance NEIP going forward. Integrating GO and pathway enrichment through the g:Profiler API—and storing the results in a dedicated database table—would let users immediately view biological context alongside raw fold-change data. Adding a volcano plot (log₂FC vs. –log₁₀(p-adj)) would complement the bar chart and help highlight genes of interest. Linking each gene symbol to external resources like UniProt or Ensembl would provide one-click access to detailed annotations. Implementing user authentication and a history dashboard would allow researchers to revisit and compare past analyses, and caching frequently requested result sets in the database would improve performance for repeat queries.
